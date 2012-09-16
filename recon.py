@@ -27,7 +27,10 @@ The distance metric implemented currently is the squared L2-distance.
 In the future, the error metric will use Mahalanobis distance.
 
 This class can inherently load all file formats supported by openCVs 
-loadImage method
+loadImage method.
+
+If you get an error looking for files in certain folders you have to 
+change the paths manually below.
 """
 
 class Recon:

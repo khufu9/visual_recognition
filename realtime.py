@@ -6,7 +6,7 @@ import numpy
 import math
 import recon
 
-capdevice = 1
+capdevice =0 # 0 for integrated cam 1 for usb-cam
 
 class Scan:
 
@@ -69,7 +69,7 @@ class Scan:
 
 	def haarScan(self,comprimg):
 
-		faceCascade = cv.Load("./resources/haarcascade_frontalface_alt.xml")
+		faceCascade = cv.Load("./haarcascade_frontalface_alt.xml")
 
 		haarScale = 1.2
 		minNeighbors = 2
