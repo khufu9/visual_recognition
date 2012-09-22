@@ -15,6 +15,7 @@ Dependecies
 -----------
 
 * OpenCV (tested 2.4.2)
+* Numpy (tested 1.6.2)
 * Python 2.X
 
 
