@@ -38,6 +38,7 @@ No subdirectory "faces":
 
 	$: ... No such file or directory: './faces/'
 
-Simply create the directory.
-
+Simply put two random images there (.jpg .png .tiff...). Use the example to 
+take two photos of you or something to recognize. Remove the random images 
+and reload the example.
 
