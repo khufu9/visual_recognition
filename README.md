@@ -30,4 +30,13 @@ Select a portrait to save by entering the numeric key 1-9 and press space.
 Enter the name and press enter. The portrait should now write out the file 
 name you just entered. 
 
-If you get an error saying "./faces/ doesn't exist" simply create the directory.
+Errors
+------
+
+No subdirectory "faces":
+
+	$: ... No such file or directory: './faces/'
+
+Simply create the directory.
+
+
