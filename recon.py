@@ -1,5 +1,5 @@
 from numpy import *
-import scipy.linalg
+#import scipy.linalg
 import cv
 import os
 import re
@@ -66,10 +66,13 @@ class Recon:
 		"""
 		dims = self.gammas.shape
 
+		print dims
+
 		self.Xi = array([mean(self.gammas,axis=1),]).T
 	
 		A = subtract(self.gammas,self.Xi)
-		[D,V] = scipy.linalg.eig( dot(A.T,A) )
+		#[D,V] = scipy.linalg.eig( dot(A.T,A) )
+		[D,V] = linalg.eig( dot(A.T,A) )
 		[D,V] =	self.__sortByEigenValue(D,V)	
 		D = sqrt(1.0/D)
 		D = diag(D)	
