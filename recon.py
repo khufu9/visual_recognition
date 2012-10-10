@@ -133,7 +133,7 @@ class Recon:
 		# For now, select all eigenfaces as a basis
 		Uhat = self.U	
 		if arr2D.rows != self.img_rows and arr2D.cols != self.img_cols:
-			rimg = cv.CreateImage( self.img_row, self.img_col, 8, 1 )
+			rimg = cv.CreateImage( (self.img_rows, self.img_cols), 8, 1 )
 			cv.Resize( arr2D, rimg, cv.CV_INTER_LINEAR )
 			arr2D = array(rimg) 
 		gamma = reshape(array(arr2D),(self.img_rows*self.img_cols,1))
