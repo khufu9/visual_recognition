@@ -56,7 +56,8 @@ class Recon:
 		self.matcher = re.compile(".jpg|.jpeg|.jpe|.pgm|.ppm|.pbm|.png|.tiff|.tif")
 		# preparing data is considered a part of the constructor
 		self.loadFaces()
-		self.computeFaceSpace()
+		if self.gammas.shape[0] > 2:
+			self.computeFaceSpace()
 
 	def computeFaceSpace(self):
 		"""		
@@ -93,7 +94,8 @@ class Recon:
 	def getScoreboard(self):
 		return self.__sb	
 
-
+	def get_num_faces(self):
+		return self.gammas.shape[-1]
 	
 	def loadFaces(self):
 		"""DESCRIPTION: 

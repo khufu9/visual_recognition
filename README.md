@@ -22,7 +22,7 @@ Dependecies
 Examples
 --------
 
-An example application is provided which demo the application in real-time. 
+* Real-time recognition
 To start the example run:
 
 	$: python2.7 realtime.py
@@ -31,14 +31,13 @@ Select a portrait to save by entering the numeric key 1-9 and press space.
 Enter the name and press enter. The portrait should now write out the file 
 name you just entered. 
 
-Errors
-------
+* Surveillance
+To start the example run:
 
-No subdirectory "faces":
+	$: python2.7 surveillance.py
 
-	$: ... No such file or directory: './faces/'
+The application records faces that can be recognized using Haar-detection. 
+Faces are stored in folders by their data and the names are by the time. 
+This application features improved tracking capabilites. 
 
-Simply put two random images there (.jpg .png .tiff...). Use the example to 
-take two photos of you or something to recognize. Remove the random images 
-and reload the example.
 

@@ -6,7 +6,7 @@ import numpy
 import math
 import recon
 
-capdevice =0 # 0 for integrated cam 1 for usb-cam
+capdevice = 1 # 0 for integrated cam 1 for usb-cam
 
 class Scan:
 
@@ -94,6 +94,7 @@ if __name__ == "__main__":
 
 	lib = recon.Recon()
 
+
 	while True:
 		img = cv.QueryFrame( scan.capture )			
 
@@ -117,9 +118,8 @@ if __name__ == "__main__":
 		port = cv.CreateImage( (134,179),8,3 )
 		offset = 0
 
-		num = 1
 		if suspects:
-			
+			num = 1	
 			for ((x,y,w,h), n) in suspects:
 				top_left = (int(x*icr)+int(5*icr), int(y*icr)+int(10*icr))
 				bottom_right = (int((x+w) * icr)-int(5*icr), int((y+h)*icr)-int(0*icr))
@@ -138,19 +138,24 @@ if __name__ == "__main__":
 				cv.EqualizeHist(gport,gport)
 				cv.SetImageROI( img, (10+offset,img.height-189,134,179) )
 				cv.Copy(port,img)
-				scan.write(img,(5,160),lib.lookup(cv.GetMat(gport)),(255,255,255))
+				if lib.get_num_faces()>1:
+					scan.write(img,(5,160),lib.lookup(cv.GetMat(gport)),(255,255,255))
 				if num == scan.selected:
-					cv.Rectangle(img, (0,0),(134-2,179-2), cv.RGB(255,0,0),2,8,0)
+					cv.Rectangle(img, (0,0),(134-2,179-2), cv.RGB(30,255,30),2,8,0)
 					scan.selectedimg = gport
 
 
 				scan.currentface = cv.CloneImage(gport)
 
 				cv.ResetImageROI(img)
+
 				offset += 144
+				num += 1
 
-				num = num + 1
 
+		scan.write(img,(5,20),"Recognition requires at least three images in the trainingset.",(30,255,30))
+		scan.write(img,(5,35),"Use num-keys 1-5 to select a portrait and press <space> to save and enter a name.",(30,255,30))
+		
 		cv.ShowImage(scan.windowname,img)
 		
 		for (t,n1) in scan.targets:
@@ -176,7 +181,8 @@ if __name__ == "__main__":
 			cv.SaveImage("./faces/"+name+".jpg", scan.selectedimg)
 			lib.resetAll()
 			lib.loadFaces()
-			lib.computeFaceSpace()
+			if lib.gammas.shape[0] > 1:
+				lib.computeFaceSpace()
 		if key-48 in xrange(1,5):
 			numf = key-48
 			scan.selected = numf
